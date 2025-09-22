@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LR Gourmet | Cardápio</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Eczar:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Carrossel Hero (Cardápio) -->
+    <div id="mainCarousel" class="carousel slide hero-carousel" data-ride="carousel" data-interval="4000" data-pause="hover">
+        <ol class="carousel-indicators">
+            <li data-target="#mainCarousel" data-slide-to="0" class="active"></li>
+            <li data-target="#mainCarousel" data-slide-to="1"></li>
+        </ol>
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <a href="pistache.html" class="d-block">
+                    <picture>
+                        <source media="(max-width: 767.98px)" srcset="PISTACHE.svg">
+                        <img src="pistache pc .svg" class="d-block w-100" alt="Pistache Desktop">
+                    </picture>
+                </a>
+            </div>
+            <div class="carousel-item">
+                <picture>
+                    <source media="(max-width: 767.98px)" srcset="FRETE.svg">
+                    <img src="frete pc.svg" class="d-block w-100" alt="Frete Desktop">
+                </picture>
+            </div>
+        </div>
+        <a class="carousel-control-prev" href="#mainCarousel" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Anterior</span>
+        </a>
+        <a class="carousel-control-next" href="#mainCarousel" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Próximo</span>
+        </a>
+    </div>
+
+    <!-- Status de Abertura (Cardápio) -->
+    <div id="statusBar" class="status-bar d-none text-center">
+        <span id="statusText"></span>
+    </div>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                LR Gourmet
+            </a>
+            <button class="navbar-toggler custom-toggler ml-auto" type="button" data-toggle="collapse" data-target="#navbarNav">
+                <span class="navbar-toggler-icon">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav mx-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="cardapio.html">Cardápio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="horarios.html">Horários</a>
+                    </li>
+                      <!--<li class="nav-item">
+                        <a class="nav-link" href="contato.html">Contato</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="sugestoes.html">Sugestões</a>
+                    </li>  -->
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Cardápio -->
+    <section class="container my-1">
+        <h2 class="text-center mb-5">Cardápio Completo</h2>
+        <div class="row">
+            <div class="col-md-6 mb-4">
+                <div class="card h-100 shadow">
+                    <div class="card-header bg-doces text-white">
+                        <h4>Doces no Pote</h4>
+                    </div>
+                    <div class="card-body">
+                        <ul class="list-group list-group-flush">
+                           <!-- <li class="list-group-item d-flex justify-content-between align-items-center">
+                                <div class="product-with-image">
+                                    <img src="bom bom de morango.svg" class="product-image" alt="Bom Bom de Morango">
+                                    <div class="product-info">
+                                        <h5>Bom Bom de Morango</h5>
+                                        <p class="mb-1">Brigadeiro tradicional, Brigadeiro de Ninho, e Morangos frescos.</p>
+                                        <strong>R$ 12,00</strong>
+                                    </div>
+                                </div>
+                                <button class="btn btn-sm btn-primary add-to-cart" 
+                                        data-name="Bom Bom de Morango" 
+                                        data-price="12.00">
+                                    </i> Adicionar</button>
+                            </li>
+
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                <div class="product-with-image">
+                                    <img src="bom bom de uva.svg" class="product-image" alt="Bom Bom de Uva">
+                                    <div class="product-info">
+                                        <h5>Bom Bom de Uva</h5>
+                                        <p class="mb-1">Brigadeiro tradicional, Brigadeiro de Ninho, e Uvas frescas.</p>
+                                        <strong>R$ 12,00</strong>
+                                    </div>
+                                </div>
+                                <button class="btn btn-sm btn-primary add-to-cart" 
+                                        data-name="Bom Bom de Uva" 
+                                        data-price="12.00">
+                                    </i> Adicionar</button>
+                            </li>
+
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                <div class="product-with-image">
+                                    <img src="tortinha de limão.svg" class="product-image" alt="Tortinha de Limão">
+                                    <div class="product-info">
+                                        <h5>Tortinha de Limão</h5>
+                                        <p class="mb-1">Bolacha amanteigada com recheio de limão.</p>
+                                        <strong>R$ 12,00</strong>
+                                    </div>
+                                </div>
+                                <button class="btn btn-sm btn-primary add-to-cart" 
+                                        data-name="Tortinha de Limão" 
+                                        data-price="12.00">
+                                    </i> Adicionar</button>
+                            </li>
+
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                <div class="product-with-image">
+                                    <img src="brigadeiro.png" class="product-image" alt="Pavê de Prestigio">
+                                    <div class="product-info">
+                                        <h5>Pavê de Prestigio</h5>
+                                        <p class="mb-1">Brigadeiro de coco, bolachas maizena, e brigadeiro tradicional.</p>
+                                        <strong>R$ 12,50</strong>
+                                    </div>
+                                </div>
+                                <button class="btn btn-sm btn-primary add-to-cart" 
+                                        data-name="Pavê de Prestigio" 
+                                        data-price="12.50">
+                                    </i> Adicionar</button>
+                            </li> -->
+
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 mb-4">
+                <div class="card h-100 shadow">
+                    <div class="card-header bg-trufas text-white">
+                        <h4>Trufas ao Leite</h4>
+                    </div>
+                    <div class="card-body">
+                        <ul class="list-group list-group-flush">
+                            <!--<li class="list-group-item d-flex justify-content-between align-items-center">
+                                <div class="product-with-image">
+                                    <img src="trufa.svg" class="product-image" alt="Brigadeiro Gourmet">
+                                    <div class="product-info">
+                                        <h5>Trufa de Nutella</h5>
+                                        <p class="mb-1">Nutella com casquinha de chocolate ao leite.</p>
+                                        <strong>R$ 6,50</strong>
+                                    </div>
+                                </div>
+                                <button class="btn btn-sm btn-primary add-to-cart" 
+                                        data-name="Trufa de Nutella" 
+                                        data-price="6.50">
+                                    </i> Adicionar</button>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                <div class="product-with-image">
+                                    <img src="trufa.svg" class="product-image" alt="Trufa de Ninho">
+                                    <div class="product-info">
+                                        <h5>Trufa de Ninho</h5>
+                                        <p class="mb-1">Ninho com casquinha de chocolate ao leite.</p>
+                                        <strong>R$ 6,00</strong>
+                                    </div>
+                                </div>
+                                <button class="btn btn-sm btn-primary add-to-cart" 
+                                        data-name="Trufa de Ninho" 
+                                        data-price="6.00">
+                                    </i> Adicionar</button>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                <div class="product-with-image">
+                                    <img src="trufa.svg" class="product-image" alt="Trufa de Ninho com Nutella">
+                                    <div class="product-info">
+                                        <h5>Trufa de Ninho com Nutella</h5>
+                                        <p class="mb-1">Ninho com Nutella, casquinha de chocolate ao leite.</p>
+                                        <strong>R$ 6,00</strong>
+                                    </div>
+                                </div>
+                                <button class="btn btn-sm btn-primary add-to-cart" 
+                                        data-name="Trufa de Ninho com Nutella" 
+                                        data-price="6.00">
+                                    </i> Adicionar</button>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                <div class="product-with-image">
+                                    <img src="trufa.svg" class="product-image" alt="Trufa de Oreo">
+                                    <div class="product-info">
+                                        <h5>Trufa de Oreo</h5>
+                                        <p class="mb-1">Oreo triturado com casquinha de chocolate ao leite.</p>
+                                        <strong>R$ 6,00</strong>
+                                    </div>
+                                </div>
+                                <button class="btn btn-sm btn-primary add-to-cart" 
+                                        data-name="Trufa de Oreo" 
+                                        data-price="6.00">
+                                    </i> Adicionar</button>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                <div class="product-with-image">
+                                    <img src="trufa.svg" class="product-image" alt="Beijinho">
+                                    <div class="product-info">
+                                        <h5>Trufa de Brigadeiro</h5>
+                                        <p class="mb-1">Brigadeiro tradicional com casquinha de chocolate ao leite.</p>
+                                        <strong>R$ 6,00</strong>
+                                    </div>
+                                </div>
+                                <button class="btn btn-sm btn-primary add-to-cart" 
+                                        data-name="Trufa de Brigadeiro" 
+                                        data-price="6.00">
+                                    </i> Adicionar</button>
+                            </li>
+
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                <div class="product-with-image">
+                                    <img src="trufa.svg" class="product-image" alt="Cajuzinho">
+                                    <div class="product-info">
+                                        <h5>Trufa de Ninho</h5>
+                                        <p class="mb-1">Ninho com casquinha de chocolate ao leite.</p>
+                                        <strong>R$ 6,00</strong>
+                                    </div>
+                                </div>
+                                <button class="btn btn-sm btn-primary add-to-cart" 
+                                        data-name="Trufa de Ninho" 
+                                        data-price="6.00">
+                                    </i> Adicionar</button>
+                            </li>
+
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                <div class="product-with-image">
+                                    <img src="trufa.svg" class="product-image" alt="Trufa de Limão">
+                                    <div class="product-info">
+                                        <h5>Trufa de Limão</h5>
+                                        <p class="mb-1">Limão com casquinha de chocolate ao leite.</p>
+                                        <strong>R$ 6,00</strong>
+                                    </div>
+                                </div>
+                                <button class="btn btn-sm btn-primary add-to-cart" 
+                                        data-name="Trufa de Limão" 
+                                        data-price="6.00">
+                                    </i> Adicionar</button>
+                            </li> -->
+
+                            
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6 mb-4">
+                <div class="card h-100 shadow">
+                    <div class="card-header bg-trufas-leite text-white">
+                        <h4>Trufas Brancas</h4>
+                    </div>
+                    <div class="card-body">
+                        <ul class="list-group list-group-flush">
+
+                            <!--<li class="list-group-item d-flex justify-content-between align-items-center">
+                                <div class="product-with-image">
+                                    <img src="trufa.svg" class="product-image" alt="Trufa de Pistache">
+                                    <div class="product-info">
+                                        <h5>Trufa de Pistache</h5>
+                                        <p class="mb-1">Feito com pistache.</p>
+                                        <strong>R$ 6,50</strong>
+                                    </div>
+                                </div>
+                                <button class="btn btn-sm btn-primary add-to-cart" 
+                                        data-name="Trufa de Pistache" 
+                                        data-price="6.50">
+                                    </i> Adicionar</button>
+                            </li>
+                            
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                <div class="product-with-image">
+                                    <img src="trufa.svg" class="product-image" alt="Trufa de Ninho com Nutella">
+                                    <div class="product-info">
+                                        <h5>Trufa de Ninho com Nutella</h5>
+                                        <p class="mb-1">Feito com leite ninho e Nutella original.</p>
+                                        <strong>R$ 6,50</strong>
+                                    </div>
+                                </div>
+                                <button class="btn btn-sm btn-primary add-to-cart" 
+                                        data-name="Trufa de Ninho com Nutella" 
+                                        data-price="6.50">
+                                    </i> Adicionar</button>
+                            </li>
+                            
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                <div class="product-with-image">
+                                    <img src="trufa.svg" class="product-image" alt="Trufa de Nutella ao Leite">
+                                    <div class="product-info">
+                                        <h5>Trufa de Nutella</h5>
+                                        <p class="mb-1">Nutella original.</p>
+                                        <strong>R$ 6,50</strong>
+                                    </div>
+                                </div>
+                                <button class="btn btn-sm btn-primary add-to-cart" 
+                                        data-name="Trufa de Nutella" 
+                                        data-price="6.50">
+                                    </i> Adicionar</button>
+                            </li>
+
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                <div class="product-with-image">
+                                    <img src="trufa.svg" class="product-image" alt="Trufa de Ninho ao Leite">
+                                    <div class="product-info">
+                                        <h5>Trufa de Ninho</h5>
+                                        <p class="mb-1">Feito com leite ninho original.</p>
+                                        <strong>R$ 6,00</strong>
+                                    </div>
+                                </div>
+                                <button class="btn btn-sm btn-primary add-to-cart" 
+                                        data-name="Trufa de Ninho" 
+                                        data-price="6.00">
+                                    </i> Adicionar</button>
+                            </li>
+
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                <div class="product-with-image">
+                                    <img src="trufa.svg" class="product-image" alt="Trufa de Brigadeiro">
+                                    <div class="product-info">
+                                        <h5>Trufa de Brigadeiro</h5>
+                                        <p class="mb-1">Brigadeiro tradicional.</p>
+                                        <strong>R$ 6,00</strong>
+                                    </div>
+                                </div>
+                                <button class="btn btn-sm btn-primary add-to-cart" 
+                                        data-name="Trufa de Brigadeiro" 
+                                        data-price="6.00">
+                                    </i> Adicionar</button>
+                            </li>
+
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                <div class="product-with-image">
+                                    <img src="trufa.svg" class="product-image" alt="Trufa de Oreo">
+                                    <div class="product-info">
+                                        <h5>Trufa de Oreo</h5>
+                                        <p class="mb-1">Oreo original.</p>
+                                        <strong>R$ 6,00</strong>
+                                    </div>
+                                </div>
+                                <button class="btn btn-sm btn-primary add-to-cart" 
+                                        data-name="Trufa de Oreo" 
+                                        data-price="6.00">
+                                    </i> Adicionar</button>
+                            </li> -->
+                            
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            
+            
+            <div class="col-md-6 mb-4">
+                <div class="card h-100 shadow">
+                    <div class="card-header bg-bebidas text-white">
+                        <h4>Bebidas</h4>
+                    </div>
+                    <div class="card-body">
+                        <ul class="list-group list-group-flush">
+
+                           <!--<li class="list-group-item d-flex justify-content-between align-items-center">
+                                <div class="product-with-image">
+                                    <img src="COCA-LATA.png" class="product-image" alt="Refrigerante cola 350ml">
+                                    <div class="product-info">
+                                        <h5>Refrigerante Coca-Lata 350ml</h5>
+                                        <p class="mb-1">Refrigerante Coca-Cola.</p>
+                                        <strong>R$ 6,00</strong>
+                                    </div>
+                                </div>
+                                <button class="btn btn-sm btn-primary add-to-cart" 
+                                        data-name="Refrigerante cola 350ml" 
+                                        data-price="6.00">
+                                    </i> Adicionar</button>
+                            </li>
+                            
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                <div class="product-with-image">
+                                    <img src="REFRIGERANTE-COCA-COLA-LATA-350ML-ZERO.png" class="product-image" alt="Refrigerante cola zero 350ml">
+                                    <div class="product-info">
+                                        <h5>Refrigerante Coca-Lata Zero 350ml</h5>
+                                        <p class="mb-1">Refrigerante Coca-Cola Zero.</p>
+                                        <strong>R$ 6,00</strong>
+                                    </div>
+                                </div>
+                                <button class="btn btn-sm btn-primary add-to-cart" 
+                                        data-name="Refrigerante cola zero 350ml" 
+                                        data-price="6.00">
+                                    </i> Adicionar</button>
+                            </li>
+
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                <div class="product-with-image">
+                                    <img src="GARRAFA-D´AGUA.webp" class="product-image" alt="Água Mineral">
+                                    <div class="product-info">
+                                        <h5>Água Mineral com gás 500ml</h5>
+                                        <p class="mb-1">Água mineral com gás 500ml.</p>
+                                        <strong>R$ 4,00</strong>
+                                    </div>
+                                </div>
+                                <button class="btn btn-sm btn-primary add-to-cart" 
+                                        data-name="Água Mineral com gás 500ml" 
+                                        data-price="4.00">
+                                    </i> Adicionar</button>
+                            </li>
+
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                <div class="product-with-image">
+                                    <img src="garrafa dagua com gas.webp" class="product-image" alt="Água mineral com gás.">
+                                    <div class="product-info">
+                                        <h5>Água Mineral sem gás 500ml</h5>
+                                        <p class="mb-1">Água mineral sem gás 500ml.</p>
+                                        <strong>R$ 4,00</strong>
+                                    </div>
+                                </div>
+                                <button class="btn btn-sm btn-primary add-to-cart" 
+                                        data-name="Água Mineral sem gás 500ml" 
+                                        data-price="4.00">
+                                    </i> Adicionar</button>
+                            </li> -->
+
+                        </ul>
+                    </div>
+                </div>
+            </div>       
+           
+                       
+            
+    </section>
+
+    <!-- Container para produtos customizados do dashboard -->
+    <div id="customProductsContainer" class="row">
+        <!-- Produtos customizados serão inseridos aqui dinamicamente -->
+    </div>
+
+    <!-- Modal do Carrinho -->
+<div class="modal fade" id="cartModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">🛒 Seu Pedido</h5>
+                <button type="button" class="close" data-dismiss="modal">
+                    <span>&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div id="cartItems" class="mb-3">
+                    <!-- Itens serão adicionados aqui via JS -->
+                </div>
+                
+                <div class="cart-summary border-top pt-3">
+                    <h5>Total: <span id="cartTotal">R$ 0,00</span></h5>
+                </div>
+                
+                <form id="orderForm" class="mt-4">
+                    <div class="form-group">
+                        <input type="text" id="nomeInput" class="form-control" placeholder="Seu Nome" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="cep" placeholder="Digite seu CEP" required maxlength="9">
+                        <small class="form-text text-muted">Digite seu CEP para calcular a taxa de entrega</small>
+                    </div>
+                    <div class="form-group" id="enderecoField" style="display: none;">
+                        <input type="text" id="enderecoInput" class="form-control" placeholder="Endereço Completo" required>
+                    </div>
+                    <div class="form-group" id="bairroField" style="display: none;">
+                        <input type="text" id="bairroInput" class="form-control" placeholder="Bairro" >
+                    </div>
+                    <div class="form-group" id="numeroField" style="display: none;">
+                        <input type="text" id="numeroInput" class="form-control" placeholder="Número da casa" >
+                    </div>
+                    
+                    <div class="form-group" id="taxaEntregaField" style="display: none;">
+                        <label>Taxa de Entrega</label>
+                        <div class="alert alert-info" id="taxaEntregaInfo">
+                            <span id="taxaEntregaValor">R$ 0,00</span> - <span id="taxaEntregaBairro"></span>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <select class="form-control" id="paymentSelect" required style="background-color: white !important; color: #333 !important; font-size: 16px !important;">
+                            <option value="">Forma de Pagamento</option>
+                            <option value="Cartão">Cartão</option>
+                            <option value="PIX">PIX</option>
+                            <option value="Dinheiro">Dinheiro</option>
+                        </select>
+                    </div>
+                    <div class="form-group" id="changeField" style="display: none;">
+                        <input type="text" id="trocoInput" class="form-control" placeholder="Valor para troco">
+                    </div>
+                    <div class="form-group">
+                        <textarea id="observacoesInput" class="form-control" rows="3" placeholder="Observações do pedido (opcional)" style="resize: none; overflow: hidden;"></textarea>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Continuar Comprando</button>
+                <button type="button" id="sendOrderBtn" class="btn btn-success">Enviar Pedido</button>
+            </div>
+        </div>
+    </div>
+    </div>
+
+<!-- Modal de Confirmação de Dados -->
+<div class="modal fade" id="confirmationModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" style="color: #2e8291;">Confirme seus Dados</h5>
+                <button type="button" class="close" data-dismiss="modal">
+                    <span>&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="alert alert-warning">
+                    <strong>⚠️ Atenção!</strong> Verifique se todos os dados estão corretos antes de confirmar o pedido.
+                </div>
+                
+                <div class="row">
+                    <div class="col-md-6">
+                        <h6 class="text-primary">📋 Resumo do Pedido</h6>
+                        <div id="confirmOrderItems" class="mb-3">
+                            <!-- Itens do pedido serão inseridos aqui -->
+                        </div>
+                        <div class="border-top pt-2">
+                            <strong>Total: <span id="confirmTotal">R$ 0,00</span></strong>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-6">
+                        <h6 class="text-primary">👤 Dados do Cliente</h6>
+                        <div id="confirmCustomerData">
+                            <!-- Dados do cliente serão inseridos aqui -->
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="mt-3 p-3 bg-light rounded">
+                    <p class="mb-1"><strong>❓ Os dados estão corretos?</strong></p>
+                    <small class="text-muted">Após confirmar, seu pedido será enviado via WhatsApp e não poderá ser alterado.</small>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" id="editDataBtn">
+                    <i class="fas fa-edit"></i> Editar Dados
+                </button>
+                <button type="button" class="btn btn-success" id="confirmSendBtn">
+                    <i class="fas fa-check"></i> Confirmar Envio
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <!-- Modal de Horário (quando fechado) -->
+    <div class="modal fade" id="closedModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">⏰ Fora do Horário de Funcionamento</h5>
+                    <button type="button" class="close" data-dismiss="modal">
+                        <span>&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>No momento estamos fechados. Nosso horário de funcionamento é:</p>
+                    <ul>
+                        <li>Segunda à Sexta: 10:00 - 22:00</li>
+                        <li>Sábado: 11:00 - 23:00</li>
+                        <li>Domingo: Fechado</li>
+                    </ul>
+                    <p>Voltaremos a atender em breve!</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Entendi</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Botão do Carrinho Flutuante -->
+    <div class="cart-floating-btn" data-toggle="modal" data-target="#cartModal">
+        <i class="fas fa-shopping-cart"></i>
+        <span class="cart-count" id="cartCount">0</span>
+    </div>
+
+    <!-- Rodapé -->
+    <footer >
+        <div class="container text-center">
+            <h4>Siga-nos!</h4>
+            <div class="social-icons my-3">                
+                <a href="https://www.instagram.com/lrgourmet_?utm_source=ig_web_button_share_sheet&igsh=MTF5b2t5N2pjZHltNw==" class="text-black mx-2"><i class="fab fa-instagram fa-2x"></i></a>
+                <a href="https://wa.me/5514998947758" class="text-black mx-2"><i class="fab fa-whatsapp fa-2x"></i></a>
+            </div>
+            <p>&copy; 2025 LR Gourmet. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="script.js"></script>
+    <script src="entregas.js"></script>
+</body>
+</html>

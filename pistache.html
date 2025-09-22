@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LR Gourmet | Pistache</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Eczar:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="pistache-page">
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">LR Gourmet</a>
+            <button class="navbar-toggler custom-toggler ml-auto" type="button" data-toggle="collapse" data-target="#navbarNav">
+                <span class="navbar-toggler-icon">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav mx-auto">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="cardapio.html">Cardápio</a></li>
+                    <li class="nav-item"><a class="nav-link" href="horarios.html">Horários</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Pistache (banner como cabeçalho) -->
+    <div class="hero-carousel">                         
+        <div class="carousel-item active">
+            <picture>
+                <source media="(max-width: 767.98px)" srcset="PISTACHE_1.svg">
+                <img src="pistache_.svg" class="d-block w-100" alt="Pistache">
+            </picture>
+        </div>
+    </div>
+
+    <!-- Status de Abertura (Pistache) -->
+    <div id="statusBar" class="status-bar d-none text-center">
+        <span id="statusText"></span>
+    </div>
+
+    <!-- Lista de produtos com pistache -->
+    <section class="container my-1 pistache-section">
+        <h2 class="text-center mb-5">Pistache</h2>
+        <div class="row">
+            <div class="col-md-6 mb-4">
+                <div class="card h-100 shadow">
+                    <div class="card-header bg-trufas text-white">
+                        <h4>Trufas de Pistache</h4>
+                    </div>
+                    <div class="card-body">
+                        <ul class="list-group list-group-flush">
+
+                            <!-- <li class="list-group-item d-flex justify-content-between align-items-center">
+                                <div class="product-with-image">
+                                    <img src="trufa.svg" class="product-image" alt="Trufa de Pistache">
+                                    <div class="product-info">
+                                        <h5>Trufa de Pistache</h5>
+                                        <p class="mb-1">Recheio de pistache com casquinha ao leite.</p>
+                                        <strong>R$ 6,50</strong>
+                                    </div>
+                                </div>
+                                <button class="btn btn-sm btn-primary add-to-cart" data-name="Trufa de Pistache" data-price="6.50">Adicionar</button>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                <div class="product-with-image">
+                                    <img src="trufa.svg" class="product-image" alt="Trufa de Pistache com Ninho">
+                                    <div class="product-info">
+                                        <h5>Trufa de Pistache com Ninho</h5>
+                                        <p class="mb-1">Pistache com ninho na casquinha ao leite.</p>
+                                        <strong>R$ 6,50</strong>
+                                    </div>
+                                </div>
+                                <button class="btn btn-sm btn-primary add-to-cart" data-name="Trufa de Pistache com Ninho" data-price="6.50">Adicionar</button>
+                            </li> -->
+
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 mb-4">
+                <div class="card h-100 shadow">
+                    <div class="card-header bg-trufas text-white">
+                        <h4>Casquinha de Pistache</h4>
+                    </div>
+                    <div class="card-body">
+                        <ul class="list-group list-group-flush">
+                           
+                           <!-- <li class="list-group-item d-flex justify-content-between align-items-center">
+                                <div class="product-with-image">
+                                    <img src="trufa.svg" class="product-image" alt="Trufa de Ninho (Casquinha de Pistache)">
+                                    <div class="product-info">
+                                        <h5>Trufa de Ninho</h5>
+                                        <p class="mb-1">Ninho com casquinha de pistache.</p>
+                                        <strong>R$ 7,00</strong>
+                                    </div>
+                                </div>
+                                <button class="btn btn-sm btn-primary add-to-cart" data-name="Trufa de Ninho (Casquinha de Pistache)" data-price="7.00">Adicionar</button>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                <div class="product-with-image">
+                                    <img src="trufa.svg" class="product-image" alt="Trufa de Pistache (Casquinha de Pistache)">
+                                    <div class="product-info">
+                                        <h5>Trufa de Pistache</h5>
+                                        <p class="mb-1">Pistache com casquinha de pistache.</p>
+                                        <strong>R$ 7,00</strong>
+                                    </div>
+                                </div>
+                                <button class="btn btn-sm btn-primary add-to-cart" data-name="Trufa de Pistache (Casquinha de Pistache)" data-price="7.00">Adicionar</button>
+                            </li> -->
+
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Botão do Carrinho Flutuante -->
+    <div class="cart-floating-btn" data-toggle="modal" data-target="#cartModal">
+        <i class="fas fa-shopping-cart"></i>
+        <span class="cart-count" id="cartCount">0</span>
+    </div>
+
+    <!-- Modal do Carrinho -->
+    <div class="modal fade" id="cartModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">🛒 Seu Pedido</h5>
+                    <button type="button" class="close" data-dismiss="modal">
+                        <span>&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div id="cartItems" class="mb-3"></div>
+                    <div class="cart-summary border-top pt-3">
+                        <h5>Total: <span id="cartTotal">R$ 0,00</span></h5>
+                    </div>
+                    <form id="orderForm" class="mt-4">
+                        <div class="form-group">
+                            <input type="text" id="nomeInput" class="form-control" placeholder="Seu Nome" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control" id="cep" placeholder="Digite seu CEP" required maxlength="9">
+                            <small class="form-text text-muted">Digite seu CEP para calcular a taxa de entrega</small>
+                        </div>
+                        <div class="form-group" id="enderecoField" style="display: none;">
+                            <input type="text" id="enderecoInput" class="form-control" placeholder="Endereço Completo" required>
+                        </div>
+                        <div class="form-group" id="bairroField" style="display: none;">
+                            <input type="text" id="bairroInput" class="form-control" placeholder="Bairro" >
+                        </div>
+                        <div class="form-group" id="numeroField" style="display: none;">
+                            <input type="text" id="numeroInput" class="form-control" placeholder="Número da casa" >
+                        </div>
+                        <div class="form-group" id="taxaEntregaField" style="display: none;">
+                            <label>Taxa de Entrega</label>
+                            <div class="alert alert-info" id="taxaEntregaInfo">
+                                <span id="taxaEntregaValor">R$ 0,00</span> - <span id="taxaEntregaBairro"></span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <select class="form-control" id="paymentSelect" required>
+                                <option value="">Forma de Pagamento</option>
+                                <option value="Cartão">Cartão</option>
+                                <option value="PIX">PIX</option>
+                                <option value="Dinheiro">Dinheiro</option>
+                            </select>
+                        </div>
+                        <div class="form-group" id="changeField" style="display: none;">
+                            <input type="text" id="trocoInput" class="form-control" placeholder="Valor para troco">
+                        </div>
+                        <div class="form-group">
+                            <textarea id="observacoesInput" class="form-control" rows="3" placeholder="Observações do pedido (opcional)" style="resize: none; overflow: hidden;"></textarea>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Continuar Comprando</button>
+                    <button type="button" id="sendOrderBtn" class="btn btn-success">Enviar Pedido</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container text-center">
+            <h4>Siga-nos!</h4>
+            <div class="social-icons my-3">
+                <a href="https://www.instagram.com/lrgourmet_?utm_source=ig_web_button_share_sheet&igsh=MTF5b2t5N2pjZHltNw==" class="text-black mx-2"><i class="fab fa-instagram fa-2x"></i></a>
+                <a href="https://wa.me/5514998947758" class="text-black mx-2"><i class="fab fa-whatsapp fa-2x"></i></a>
+            </div>
+            <p>&copy; 2025 LR Gourmet. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
+
