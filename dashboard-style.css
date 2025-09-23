@@ -1,5 +1,107 @@
-/* Dashboard Styles - LR Gourmet */
+/* Responsividade dos KPIs: 2x2 abaixo de 2000px */
+@media (max-width: 2000px) {
+    .row.mb-4 > .col-lg-3 {
+        flex: 0 0 50%;
+        max-width: 50%;
+    }
+}
+@media (max-width: 992px) {
+    .row.mb-4 > .col-lg-3 {
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+}
+#topBairrosList {
+    /* Ranking visual dos bairros mais pedidos */
+    background: #f8f9fa;
+    border-radius: 10px;
+    padding: 18px 18px 18px 28px;
+    margin: 0;
+    box-shadow: 0 2px 8px rgba(46,130,145,0.08);
+}
+.bairro-list-item {
+    display: flex;
+    align-items: center;
+    font-size: 1.08rem;
+    margin-bottom: 12px;
+    padding: 8px 0;
+    border-bottom: 1px solid #e9ecef;
+}
+.bairro-list-item:last-child {
+    border-bottom: none;
+}
+.bairro-nome {
+    font-weight: 600;
+    color: #2e8291;
+    flex: 1;
+}
+.bairro-list-item .badge {
+    font-size: 0.95rem;
+    padding: 7px 16px;
+    border-radius: 20px;
+    font-weight: 600;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.08);
+}
+#topBairrosList {
+    background: #f8f9fa;
+    border-radius: 10px;
+    padding: 18px 18px 18px 28px;
+    margin: 0;
+    box-shadow: 0 2px 8px rgba(46,130,145,0.08);
+}
+.bairro-list-item {
+    display: flex;
+    align-items: center;
+    font-size: 1.08rem;
+    margin-bottom: 12px;
+    padding: 8px 0;
+    border-bottom: 1px solid #e9ecef;
+}
+.bairro-list-item:last-child {
+    border-bottom: none;
+}
+.bairro-nome {
+    font-weight: 600;
+    color: #2e8291;
+    flex: 1;
+}
+.bairro-list-item .badge {
+    font-size: 0.95rem;
+    padding: 7px 16px;
+    border-radius: 20px;
+    font-weight: 600;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.08);
+}
+.d-dashboard-short { display: none; }
+.d-dashboard-long { display: inline; }
+.d-dashboard-short {
+    display: none;
+}
+.d-dashboard-long {
+    display: inline;
+}
+
+@media (max-width: 500px) {
+    /* Mostra título curto do dashboard em telas pequenas */
+    .d-dashboard-short { display: inline !important; }
+    .d-dashboard-long { display: none !important; }
+}
+.d-produtos-short { display: none; }
+.d-produtos-long { display: inline; }
+.d-produtos-short {
+    display: none;
+}
+.d-produtos-long {
+    display: inline;
+}
+
+@media (max-width: 460px) {
+    /* Mostra título curto de gerenciamento de produtos em telas pequenas */
+    .d-produtos-short { display: inline !important; }
+    .d-produtos-long { display: none !important; }
+}
 :root {
+    /* Cores e variáveis globais do dashboard */
     --primary-color: #2e8291;
     --secondary-color: #1a5f6b;
     --success-color: #28a745;
@@ -14,6 +116,34 @@
     --box-shadow: 0 2px 10px rgba(0,0,0,0.1);
     --transition: all 0.3s ease;
 }
+:root {
+    --primary-color: #2e8291;
+    --secondary-color: #1a5f6b;
+    --success-color: #28a745;
+    --info-color: #17a2b8;
+    --warning-color: #ffc107;
+    --danger-color: #dc3545;
+    --light-color: #f8f9fa;
+    --dark-color: #343a40;
+    --sidebar-width: 250px;
+    --header-height: 70px;
+    --border-radius: 8px;
+    --box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    --transition: all 0.3s ease;
+    }
+
+@media (max-width: 768px) {
+    /* Esconde botões do header no mobile, mostra no menu lateral */
+    #refreshData,
+    #clearAllData { display: none !important; }
+    #refreshDataMobile,
+    #clearAllDataMobile { display: inline-block !important; }
+}
+@media (min-width: 769px) {
+    #refreshDataMobile,
+    #clearAllDataMobile { display: none !important; }
+}
+
 
 * {
     margin: 0;
@@ -21,6 +151,86 @@
     box-sizing: border-box;
 }
 
+/* Tamanho uniforme dos botões de ações de produtos (desktop/tablet) */
+#productActionsContainer .btn {
+    width: 150px; /* usa o tamanho do botão de lixeira como referência */
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    white-space: nowrap;        /* não quebrar linha dentro do botão */
+    overflow: hidden;           /* evita extravasar a largura fixa */
+    text-overflow: ellipsis;    /* mostra reticências se necessário */
+}
+
+/* Toolbar reutilizável para grupos de ações (wrap automático) */
+.actions-toolbar {
+    display: flex;
+    flex-wrap: wrap;    /* permite quebrar para a linha de baixo */
+    gap: 8px;           /* espaçamento consistente entre botões */
+    align-items: center;
+    justify-content: flex-end; /* alinhar à direita quando houver espaço */
+}
+.actions-toolbar .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 150px;       /* largura coerente com botões de produtos */
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* Em telas menores, os botões ocupam a largura disponível e quebram */
+@media (max-width: 1000px) {
+    .actions-toolbar {
+        justify-content: stretch;
+    }
+    .actions-toolbar .btn {
+        flex: 1 1 220px;   /* cada botão tenta ter ~220px e quebra quando necessário */
+        min-width: 0;      /* permite encolher em telas bem estreitas */
+    }
+}
+
+/* Cabeçalho dos Produtos Adicionados: permite quebra e empilha a toolbar abaixo do título quando não couber */
+.added-products-header {
+    flex-wrap: wrap;
+}
+@media (max-width: 1000px) {
+    .added-products-header .actions-toolbar {
+        flex: 1 1 100%; /* ocupa a linha inteira quando quebra */
+    }
+}
+
+/* Não quebrar linha e ocupar todo o espaço quando no mount acima dos filtros */
+#productActionsMobileMount #productActionsContainer {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 8px;
+    width: 100%;
+}
+#productActionsMobileMount #productActionsContainer .btn {
+    width: auto;
+    flex: 1 1 0;
+}
+
+/* Garantir que no cabeçalho também não quebre linha */
+#productActionsHeaderMount #productActionsContainer {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 8px;
+}
+
+@media (max-width: 978px) {
+    /* Mesma largura para os três botões em telas menores */
+    #productActionsContainer .btn {
+        width: 150px;
+        max-width: 100%;
+        font-size: 1rem;
+        padding: 10px 0;
+        margin-right: 8px;
+    }
+    #productActionsContainer .btn:last-child { margin-right: 0; }
+}
 body {
     font-family: 'Poppins', sans-serif;
     background-color: #f5f6fa;
@@ -112,7 +322,14 @@ body {
     bottom: 20px;
     left: 20px;
     right: 20px;
+    z-index: 1100;
 }
+
+#logoutBtn {
+    cursor: pointer;
+    z-index: 1101;
+}
+
 
 /* Main Content */
 .main-content {
@@ -137,6 +354,23 @@ body {
     margin: 0;
 }
 
+/* Título do dashboard: editar direto aqui */
+.dashboard-title {
+    font-size: 1.6rem;
+    letter-spacing: 0.2px;
+}
+
+/* Em telas pequenas, colar mais no botão menu */
+@media (max-width: 576px) {
+    .dashboard-header .d-flex.align-items-center > #menuToggle {
+        margin-right: 6px !important;
+    }
+    .dashboard-title {
+        margin-left: 4px !important;
+        font-size: 1.35rem;
+    }
+}
+
 /* Content Sections */
 .content-section {
     display: none;
@@ -154,13 +388,26 @@ body {
 }
 
 /* KPI Cards */
+
+.kpi-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    width: 100%;
+    max-width: 100vw;
+    box-sizing: border-box;
+    overflow-x: hidden;
+}
+
 .kpi-card {
     background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
     border-radius: var(--border-radius);
     padding: 25px;
     box-shadow: var(--box-shadow);
     transition: var(--transition);
-    height: 100%;
+    flex: 1 1 220px;
+    min-width: 180px;
+    max-width: 100%;
     display: flex;
     align-items: center;
     border: 1px solid rgba(46, 130, 145, 0.1);
@@ -628,6 +875,28 @@ body.sidebar-open {
     position: relative;
 }
 
+/* Oculta spinners nativos do input numérico do estoque */
+.stock-input[type=number] {
+    -moz-appearance: textfield; /* Firefox */
+    appearance: textfield;      /* Padrão */
+}
+.stock-input::-webkit-outer-spin-button,
+.stock-input::-webkit-inner-spin-button {
+    -webkit-appearance: none; /* Chrome, Safari, Edge (Chromium), Opera */
+    margin: 0;
+}
+
+/* Remover spinners de TODOS os inputs numéricos (global no dashboard) */
+input[type=number] {
+    -moz-appearance: textfield;
+    appearance: textfield;
+}
+input[type=number]::-webkit-outer-spin-button,
+input[type=number]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
 #menuToggle:hover {
     transform: translateY(-1px);
     box-shadow: 0 4px 12px rgba(0,0,0,0.2);
@@ -682,17 +951,39 @@ body.sidebar-open {
     }
     
     .dashboard-header h2 {
-        font-size: 1.5rem;
-        margin-left: 50px;
+        font-size: 1.1rem;
+        margin-left: 20px;
+        font-weight: 600;
+        letter-spacing: 0.5px;
     }
+
+    .date-filter select.form-control {
+        font-size: 0.85rem !important;
+        min-width: 90px !important;
+        height: 28px !important;
+        padding: 2px 8px !important;
+    }
+    
     
     .content-section {
         padding: 0 15px 20px;
     }
     
+    .kpi-row {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        width: 100%;
+        max-width: 100vw;
+        box-sizing: border-box;
+        overflow-x: hidden;
+    }
     .kpi-card {
-        margin-bottom: 15px;
-        padding: 20px 15px;
+        margin-bottom: 0;
+        padding: 16px 10px;
+        flex: 1 1 100%;
+        min-width: 0;
+        width: 100%;
         flex-direction: column;
         text-align: center;
         min-height: auto;
@@ -806,6 +1097,35 @@ body.sidebar-open {
     }
 }
 
+/* Ajustes do card de produto em telas muito pequenas */
+@media (max-width: 500px) {
+    .product-card-body { position: relative; }
+    /* Esconde badge de status */
+    .product-card-body .product-status-badge { display: none !important; }
+    /* Coloca o toggle abaixo da imagem */
+    .product-card-body .product-availability-toggle { position: static; margin-left: 0; }
+    .product-card-body .product-meta { flex-wrap: wrap; gap: 6px; }
+    /* Nome embaixo da imagem */
+    .product-card-body .product-header { align-items: flex-start; }
+    .product-card-body .product-header > img { margin-right: 10px; }
+    .product-card-body .product-header h6 { margin: 4px 0 0 0; font-size: 0.98rem; }
+    .product-card-body .product-header .product-category { display: none !important; }
+
+    /* Valor vai para baixo do toggle, à direita */
+    .product-card-body .product-price {
+        margin-left: auto;
+        text-align: right;
+        display: inline-block;
+        margin-top: 0;
+    }
+    /* Estoque mais para cima e "Ilimitado" embaixo do seletor */
+    .product-card-body .stock-block { margin-top: 6px !important; }
+    .product-card-body .stock-inline { display: flex; flex-wrap: wrap; gap: 8px; }
+    .product-card-body .stock-unlimited-wrapper { width: 100%; margin-left: 0 !important; }
+    /* Esconde categorias do produto (redundância, garante oculto) */
+    .product-card-body .product-category { display: none !important; }
+}
+
 /* Responsive Design - Small Mobile */
 @media (max-width: 576px) {
     
@@ -904,6 +1224,46 @@ body.sidebar-open {
     }
 }
 
+/* ===============================
+   ESTILOS ESPECÍFICOS DOS BOTÕES DE AÇÕES (Produtos)
+   Requisitos:
+   - Desativar Todos: vermelho -> branco (gradiente)
+   - Ativar Todos: verde -> branco (gradiente)
+   - Zerar Produtos: vermelho sólido
+   - Todas as fontes brancas
+   =============================== */
+#enableAllProducts,
+#disableAllProducts,
+#resetAllProducts {
+    color: #fff !important;           /* fontes brancas */
+    border: none !important;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.25); /* melhora a leitura no gradiente claro */
+}
+
+/* Ativar: verde -> verde claro (sem branco) */
+#enableAllProducts {
+    background: linear-gradient(135deg, #28a745 0%, #a8e6a3 100%) !important; /* verde base -> verde claro */
+}
+#enableAllProducts:hover {
+    background: linear-gradient(135deg, #23923d 0%, #95d892 100%) !important; /* leve escurecido + claro agradável */
+}
+
+/* Desativar: vermelho -> vermelho claro (sem branco) */
+#disableAllProducts {
+    background: linear-gradient(135deg, #dc3545 0%, #f5a3ab 100%) !important; /* vermelho base -> vermelho claro */
+}
+#disableAllProducts:hover {
+    background: linear-gradient(135deg, #c82333 0%, #f08c96 100%) !important; /* leve escurecido + claro agradável */
+}
+
+/* Zerar: vermelho sólido */
+#resetAllProducts {
+    background: #dc3545 !important;
+}
+#resetAllProducts:hover {
+    background: #c82333 !important;
+}
+
 /* Extra Small Mobile */
 @media (max-width: 375px) {
     .kpi-content h3 {
@@ -923,6 +1283,76 @@ body.sidebar-open {
         padding: 5px 8px;
         font-size: 0.7rem;
     }
+}
+
+/* ===============================
+   PÁGINA DE PRODUTOS: Botões de seleção de página responsivos
+   - Em telas menores que 1000px: ocupar toda a largura, fontes brancas
+   - Visual similar aos botões de ativar/desativar (gradiente primário)
+   =============================== */
+@media (max-width: 1000px) {
+    #productPageFilters {
+        display: flex;
+        flex-wrap: nowrap;
+        gap: 8px;
+        width: 100%;
+    }
+    #productPageFilters .btn {
+        flex: 1 1 0;
+        margin-right: 0 !important; /* neutraliza mr-2 */
+        color: var(--primary-color) !important;   /* texto em cor primária quando não selecionado */
+        border: 2px solid var(--primary-color) !important;
+        background: transparent !important;       /* sem background por padrão */
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+    #productPageFilters .btn:not(.active):hover {
+        background: rgba(46, 130, 145, 0.08) !important; /* leve destaque no hover */
+    }
+    #productPageFilters .btn.active {
+        background: linear-gradient(135deg, var(--primary-color), var(--secondary-color)) !important; /* aplica gradiente somente quando selecionado */
+        color: #fff !important;  /* fontes brancas no ativo */
+        border: none !important;
+    }
+}
+
+/* Mostrar somente ícones dos botões de ação dos produtos em telas muito pequenas */
+@media (max-width: 500px) {
+    #productActionsContainer .btn .btn-text,
+    #addedProductsActions .btn .btn-text {
+        display: none !important;
+    }
+    #productActionsContainer .btn i,
+    #addedProductsActions .btn i {
+        margin-right: 0 !important;
+    }
+    /* No mount móvel, ocupar toda a largura mesmo em ícone-only */
+    #productActionsMobileMount #productActionsContainer .btn {
+        padding: 8px 10px;
+        width: auto;
+        min-width: 44px; /* não fica menor que o ícone */
+        flex: 1 1 0;
+    }
+    /* Toolbar de Adicionar Produtos: permitir 2 por linha em telas muito pequenas */
+    #addedProductsActions .btn {
+        flex: 1 1 calc(50% - 8px);
+        min-width: 44px;
+        padding: 10px 8px;
+    }
+}
+
+/* Estilo do botão Apagar Todos (added products) */
+#addedProductsActions #purgeCustomProducts {
+    background: #dc3545 !important; /* vermelho sólido */
+    color: #fff !important;         /* texto branco */
+    border: none !important;
+}
+#addedProductsActions #purgeCustomProducts:hover {
+    background: #c82333 !important;
 }
 
 /* Loading States */

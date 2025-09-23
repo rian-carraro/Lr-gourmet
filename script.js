@@ -1,17 +1,10 @@
-// Configuração de horário de funcionamento por dia da semana
-// 0 = Domingo, 1 = Segunda, 2 = Terça, 3 = Quarta, 4 = Quinta, 5 = Sexta, 6 = Sábado
-// const businessHours = {
-//     0: { open: 11, close: 23 },   // Domingo: fechado
-//     1: { open: null, close: null },       // Segunda: 10h às 22h
-//     2: { open: null, close: null },       // Terça: 10h às 22h
-//     3: { open: null, close: null },       // Quarta: 10h às 22h
-//     4: { open: null, close: null },       // Quinta: 10h às 22h
-//     5: { open: null, close: null },       // Sexta: 10h às 22h
-//     6: { open: 11, close: 23 }        // Sábado: 11h às 23h
-// };
+
 
 // Carrinho de Compras
 let cart = JSON.parse(localStorage.getItem('lancheriaCart')) || [];
+// Mapa de estoque atual por nome de produto: { [productName]: number|null }
+// null significa ilimitado; se não existir no mapa, vamos inicializar com base nos produtos integrados
+let productStockState = JSON.parse(localStorage.getItem('lrGourmetProductStockState')) || {};
 let isOpen = false;
 let taxaEntrega = 0;
 let bairroEntrega = "";
@@ -117,6 +110,11 @@ function formatMoney(value) {
 // Função para salvar o carrinho no localStorage
 function saveCart() {
     localStorage.setItem('lancheriaCart', JSON.stringify(cart));
+}
+
+// Persistir estado de estoque atual
+function saveProductStockState() {
+    localStorage.setItem('lrGourmetProductStockState', JSON.stringify(productStockState));
 }
 
 // Função para formatar CEP
@@ -280,7 +278,24 @@ function updateQuantity(index, newQuantity) {
     }
     
     if (cart[index]) {
-        cart[index].quantity = newQuantity;
+        const item = cart[index];
+        const currentQty = item.quantity;
+        if (newQuantity > currentQty) {
+            // Tentando aumentar 1
+            const stock = getCurrentStock(item.name);
+            if (stock !== null && stock <= 0) {
+                showAlert('Sem estoque disponível para aumentar a quantidade.', 'warning');
+                return;
+            }
+            item.quantity = currentQty + 1;
+            adjustStock(item.name, -1);
+        } else if (newQuantity < currentQty) {
+            // Diminuindo 1
+            item.quantity = currentQty - 1;
+            adjustStock(item.name, +1);
+        } else {
+            item.quantity = newQuantity;
+        }
         saveCart();
         updateCart();
     }
@@ -290,7 +305,10 @@ function updateQuantity(index, newQuantity) {
 function removeFromCart(index) {
     if (cart[index]) {
         const itemName = cart[index].name;
+        const qty = cart[index].quantity || 1;
         cart.splice(index, 1);
+        // Restaurar estoque
+        adjustStock(itemName, qty);
         saveCart();
         updateCart();
         showAlert(`${itemName} removido do carrinho!`, 'danger');
@@ -370,11 +388,53 @@ function isProductAvailable(productName) {
     return availability[productName] !== false; // Por padrão, produtos são disponíveis
 }
 
+// Obtém estoque inicial do produto a partir dos produtos integrados
+function getInitialStockForProduct(productName) {
+    const products = JSON.parse(localStorage.getItem('lrGourmetIntegratedProducts')) || [];
+    const p = products.find(pr => pr.name === productName);
+    if (!p) return null; // desconhecido -> trata como ilimitado
+    if (p.stock === null || p.stock === undefined || p.stock === '') return null; // ilimitado
+    const n = parseInt(p.stock, 10);
+    return isNaN(n) ? null : Math.max(0, n);
+}
+
+// Garante que productStockState tenha entrada para o produto
+function ensureStockInitialized(productName) {
+    if (productStockState.hasOwnProperty(productName)) return;
+    const initial = getInitialStockForProduct(productName);
+    productStockState[productName] = (initial === null ? null : Number(initial));
+    saveProductStockState();
+}
+
+// Retorna estoque atual (null = ilimitado)
+function getCurrentStock(productName) {
+    ensureStockInitialized(productName);
+    return productStockState[productName];
+}
+
+// Ajusta estoque (positivo repõe, negativo consome). Respeita null (ilimitado)
+function adjustStock(productName, delta) {
+    ensureStockInitialized(productName);
+    if (productStockState[productName] === null) return; // ilimitado
+    const current = Number(productStockState[productName]) || 0;
+    const next = Math.max(0, current + Number(delta));
+    productStockState[productName] = next;
+    saveProductStockState();
+    // Atualiza UI se necessário
+    applyProductAvailabilityAndStockState();
+}
+
 // Função para adicionar produto ao carrinho
 function addToCart(name, price) {
     // Verificar se o produto está disponível
     if (!isProductAvailable(name)) {
         alert(`❌ Desculpe, o produto "${name}" não está disponível no momento.`);
+        return;
+    }
+    // Verificar estoque
+    const stock = getCurrentStock(name);
+    if (stock !== null && stock <= 0) {
+        alert(`❌ ${name} está esgotado no momento.`);
         return;
     }
     
@@ -389,6 +449,8 @@ function addToCart(name, price) {
             quantity: 1
         });
     }
+    // Debitar 1 do estoque, se aplicável
+    adjustStock(name, -1);
     
     updateCart();
     saveCart();
@@ -431,15 +493,63 @@ function applyProductAvailabilityState() {
     });
 }
 
+// Aplica disponibilidade e também estado de estoque
+function applyProductAvailabilityAndStockState() {
+    const availability = JSON.parse(localStorage.getItem('lrGourmetProductAvailability')) || {};
+    document.querySelectorAll('.list-group-item').forEach(itemEl => {
+        const btn = itemEl.querySelector('.add-to-cart');
+        if (!btn) return;
+        const productName = btn.getAttribute('data-name');
+        const isAvailable = availability[productName] !== false;
+        const stock = getCurrentStock(productName);
+        const outOfStock = (stock !== null && stock <= 0);
+
+        // Remover qualquer badge de estoque visível (não exibir quantidade ao cliente)
+        const info = itemEl.querySelector('.product-info') || itemEl;
+        const existingStockBadge = itemEl.querySelector('.stock-badge');
+        if (existingStockBadge) existingStockBadge.remove();
+
+        if (!isAvailable || outOfStock) {
+            itemEl.classList.add('product-unavailable');
+            btn.classList.add('disabled');
+            btn.setAttribute('disabled', 'disabled');
+            btn.classList.add('d-none');
+            // Selo Indisponível/Esgotado
+            let badge = itemEl.querySelector('.unavailable-badge');
+            if (!badge) {
+                badge = document.createElement('span');
+                badge.className = 'badge badge-secondary unavailable-badge';
+                info.appendChild(badge);
+            }
+            badge.textContent = (!isAvailable ? 'Indisponível' : 'Esgotado');
+        } else {
+            itemEl.classList.remove('product-unavailable');
+            btn.classList.remove('disabled');
+            btn.removeAttribute('disabled');
+            btn.classList.remove('d-none');
+            const badge = itemEl.querySelector('.unavailable-badge');
+            if (badge) badge.remove();
+        }
+    });
+}
+
 // Atualiza imediatamente quando disponibilidade muda (evento custom do dashboard)
 window.addEventListener('productAvailabilityChanged', function() {
-    applyProductAvailabilityState();
+    applyProductAvailabilityAndStockState();
 });
 
 // Sincroniza entre abas: quando localStorage muda
 window.addEventListener('storage', function(e) {
     if (e.key === 'lrGourmetProductAvailability') {
-        applyProductAvailabilityState();
+        applyProductAvailabilityAndStockState();
+    }
+    if (e.key === 'lrGourmetIntegratedProducts' || e.key === 'lrGourmetProductsLastUpdate') {
+        // Quando produtos mudam, re-render e re-aplica estoque
+        renderCustomProducts();
+    }
+    if (e.key === 'lrGourmetProductStockState') {
+        productStockState = JSON.parse(localStorage.getItem('lrGourmetProductStockState')) || {};
+        applyProductAvailabilityAndStockState();
     }
 });
 
@@ -498,7 +608,7 @@ document.addEventListener('DOMContentLoaded', function() {
     updateCart();
 
     // Aplicar estado de disponibilidade aos produtos (home/cardápio)
-    applyProductAvailabilityState();
+    applyProductAvailabilityAndStockState();
     
     // Event listener para campo de troco
     const trocoInput = document.querySelector('input[placeholder="Valor para troco"]');
@@ -808,7 +918,7 @@ function saveOrderToHistory(orderData) {
             bairro: orderData.bairro,
             observations: orderData.observations,
             date: new Date(),
-            status: 'Pendente'
+            status: 'PENDENTE' // Sempre inicia como PENDENTE (aguardando ação)
         };
         
         orderHistory.push(order);
@@ -1228,7 +1338,7 @@ function renderCustomProducts() {
                             </div>
                             <div class="card-body">
                                 <ul class="list-group list-group-flush">
-                                    ${products.map(product => `
+                                        ${products.map(product => `
                                         <li class="list-group-item d-flex justify-content-between align-items-center custom-product-item">
                                             <div class="product-with-image">
                                                 <img src="${product.image}" class="product-image" alt="${product.name}" onerror="this.src='default-product.png'">
@@ -1279,7 +1389,10 @@ function renderCustomProducts() {
         }
     });
     attachCartEventListeners();
-    applyProductAvailabilityState();
+    // Reinicializa mapa de estoque para novos produtos (não sobrescreve existentes)
+    const products = loadCustomProducts();
+    products.forEach(p => ensureStockInitialized(p.name));
+    applyProductAvailabilityAndStockState();
 }
 
 // Função para formatar nome da seção

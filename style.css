@@ -1,5 +1,19 @@
+/* ===============================
+   CSS PRINCIPAL DO SITE LR Gourmet
+   ===============================
+   Este arquivo controla o layout, cores, responsividade e estilos gerais das páginas públicas.
+   Comentários úteis foram adicionados para facilitar manutenção por iniciantes.
+*/
+
 .pistache-hero {
     margin-bottom: 72px; /* empurra mais o conteúdo abaixo só nesta página */
+}
+/* Tipografia do item do carrinho */
+.cart-left h6 {
+    font-size: 1.03rem;
+    font-weight: 700;
+    color: #1f2937; /* slate-800 */
+    margin: 0;
 }
 
 /* Tipografia do item */
@@ -15,8 +29,21 @@
     font-weight: 500;
 }
 /* Estilos Gerais */
+.cart-left small {
+    color: #6b7280; /* slate-500 */
+    font-weight: 500;
+}
+
+/* Estilos Gerais do body */
 body {
     padding-top: 100px; /* Aumentado para 100px para acomodar navbar + status bar */
+/* Carrossel principal do site */
+.hero-carousel {
+    margin-top: 0;
+    margin-bottom: 12px; /* aumenta espaço abaixo do banner */
+    position: relative;
+    z-index: 2; /* garante que o banner fique acima de elementos subsequentes */
+}
     font-family: 'Poppins', sans-serif;
     background: linear-gradient(180deg, #e9e9e9 0 180px, #fff9f5 180px 100%);
     color: #333;
@@ -49,9 +76,31 @@ body {
 }
 
 /* Desktop (somente página Pistache) */
+/* Hero específico da página de Pistache */
+.pistache-page .hero-carousel {
+    margin-bottom: 310px;
+}
+
+/* Desktop (somente página Pistache) */
 @media (min-width: 992px) {
     .pistache-page .hero-carousel {
         margin-bottom: 810px; /* ajuste específico para desktop */
+/* Botão sobre o banner principal */
+.banner-cta {
+    position: absolute;
+    bottom: 12px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #e63946;
+}
+/* Barra de status de abertura (aberto/fechado) */
+.status-bar {
+    position: static;
+    margin: 0px auto 0 auto;
+    padding: 12px 24px;
+    text-align: center;
+    font-weight: 600;
+}
     }
 }
 
@@ -196,8 +245,30 @@ body {
 /* Ajustar o padding do body - removido duplicação */
 
 /* Navbar Moderna */
+/* Ícone hamburger animado do menu mobile */
+.navbar-toggler {
+    border: none;
+    background: transparent !important;
+    padding: 0.5rem;
+}
+
+/* Navbar principal do site */
 .navbar {
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+/* cor do nome da empresa */
+.navbar-brand {
+    font-family: 'Eczar', serif;
+    font-weight: 700;
+    font-size: 1.8rem;
+    color: rgb(0, 0, 0) !important;
+}
+/* cor dos links de páginas */
+.nav-link {
+    font-weight: 600;
+    padding: 0.5rem 1.2rem !important;
+    color: rgba(0, 0, 0, 0.9) !important;
+    transition: all 0.3s;
+}
     background: linear-gradient(135deg, #51e5ff, #2e8291) !important;
     padding: 0.8rem 1rem;
     transition: all 0.3s ease;
@@ -233,6 +304,13 @@ body {
 }
 
 /* cor do efeito dos links */
+/* cor do efeito dos links */
+.nav-link:hover {
+    color: rgb(255, 255, 255) !important;
+    transform: translateY(-2px);
+}
+
+/* cor do efeito dos links */
 .nav-link::after {
     content: '';
     position: absolute;
@@ -255,6 +333,13 @@ body {
 }
 
 /* Seção de Conteúdo */
+/* cor depois do efeito dos links */
+.nav-item.active .nav-link {
+    color: white !important;
+    font-weight: 700;
+}
+
+/* Seção de Conteúdo principal */
 section {
     padding: 2rem 0;
 }
@@ -288,6 +373,12 @@ h4{
     color: #ffffff;
     font-weight: 700;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+/* Cards de Produtos */
+/* Seção Pistache - altura aumentada */
+.pistache-section {
+    padding: 2rem 0; /* igual às demais seções */
 }
 
 /* Cards de Produtos */
@@ -327,11 +418,25 @@ h4{
 }
 
 /* Cor personalizada para o bloco de Doces */
+/* Cor personalizada para o bloco de Bebidas */
+.card-header.bg-bebidas {
+    background-color: #51e5ff !important;
+    background: linear-gradient(135deg, #51e5ff, #2e8291) !important;
+}
+
+/* Cor personalizada para o bloco de Doces */
 .card-header.bg-doces {
     background-color: #51e5ff !important;
     background: linear-gradient(135deg, #51e5ff, #2e8291) !important;
 }
 
+/* Cor personalizada para o bloco de Trufas */
+.card-header.bg-trufas {
+    background-color: #51e5ff !important;
+    background: linear-gradient(135deg, #51e5ff, #2e8291) !important;
+}
+
+/* Cor personalizada para o bloco de Trufas ao Leite */
 /* Cor personalizada para o bloco de Trufas */
 .card-header.bg-trufas {
     background-color: #51e5ff !important;
@@ -366,6 +471,13 @@ h4{
 }
 
 /* Botões */
+/* Cor personalizada para o bloco de Trufas Brancas */
+.card-header.bg-trufas-brancas {
+    background-color: #51e5ff !important;
+    background: linear-gradient(135deg, #51e5ff, #2e8291) !important;
+}
+
+/* Botões principais do site */
 .btn {
     font-weight: 600;
     padding: 0.6rem 1.8rem;
@@ -375,6 +487,202 @@ h4{
     letter-spacing: 0.5px;
     text-transform: uppercase;
     font-size: 0.85rem;
+}
+/* Formulários principais do site */
+.form-control {
+    border-radius: 8px;
+    padding: 0.8rem 1.2rem;
+    border: 2px solid #eee;
+    transition: all 0.3s;
+    background-color: white;
+}
+/* Rodapé principal do site */
+footer {
+    background: linear-gradient(135deg, #51e5ff, #2e8291);
+    color: rgb(0, 0, 0);
+    padding: 0.5rem 0 1.5rem;
+    z-index: 0;
+}
+/* Botão do carrinho flutuante */
+.cart-floating-btn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #2e8291;
+}
+/* Botão Dashboard Inline (acesso admin) */
+.dashboard-btn-inline {
+    margin-left: 8px;
+    color: #6c757d;
+    text-decoration: none;
+    font-size: 0.9rem;
+    opacity: 0.4;
+}
+/* Modal do Carrinho com Rolagem */
+.modal-dialog.modal-lg {
+    max-height: 90vh;
+}
+
+/* Itens do Carrinho com rolagem */
+#cartItems {
+    max-height: 300px;
+    overflow-y: auto;
+    margin-bottom: 20px;
+}
+/* Personalizar a barra de rolagem do carrinho */
+#cartItems::-webkit-scrollbar {
+    width: 6px;
+}
+
+/* Ajustar o footer do modal para ficar fixo */
+.modal-footer {
+    margin-top: auto;
+    flex-shrink: 0;
+}
+/* Ajustar o header do modal do carrinho */
+.modal-header {
+    flex-shrink: 0;
+    background: linear-gradient(135deg, #51e5ff, #2e8291);
+    color: white;
+    border-bottom: none;
+}
+/* Ajustar o formulário para não crescer demais */
+#orderForm {
+    flex-shrink: 0;
+}
+
+/* Itens do Carrinho */
+.cart-item {
+    display: flex;
+}
+/* Itens do Cardápio */
+.list-group-item {
+    transition: all 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+/* Estado visual para produto indisponível */
+.product-unavailable {
+    opacity: 0.55;
+    filter: grayscale(100%);
+}
+
+/* Responsividade para navbar e botões */
+@media (max-width: 992px) {
+    .navbar-brand {
+        font-size: 1.5rem;
+    }
+}
+/* Responsividade para mobile */
+@media (max-width: 768px) {
+    body {
+        padding-top: 40px;
+    }
+}
+
+/* Responsividade para desktop */
+@media (min-width: 769px) {
+    .product-image {
+        width: 100px;
+        height: 100px;
+        object-fit: cover;
+        border-radius: 8px;
+    }
+}
+/* Responsividade para telas muito pequenas */
+@media (max-width: 576px) {
+    #statusBar,
+    .status-bar {
+        font-size: 0.8rem;
+        padding: 10px 16px;
+        border-radius: 50px;
+        max-width: 95vw;
+        margin-top: 10px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+}
+/* Efeitos Especiais: alertas fixos */
+.fixed-alert {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1100;
+    transition: all 0.4s;
+}
+/* Estilo para produtos com imagem */
+.product-with-image {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    width: 100%;
+}
+/* Centralizar texto dentro dos botões Adicionar */
+.add-to-cart {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+/* Carrinho Mobile - Layout Melhorado */
+.cart-item {
+    background: #fff;
+    border: 1px solid #eaecef !important;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    transition: box-shadow 0.25s ease, transform 0.25s ease;
+}
+/* Colunas do item do carrinho */
+.cart-left {
+    flex: 1 1 auto;
+}
+
+/* Divisor sutil entre conteúdo e trilho direito */
+.cart-right-rail::before {
+    content: '';
+    position: absolute;
+    left: -16px;
+    top: 0;
+    bottom: 0;
+    width: 1px;
+    background: linear-gradient(to bottom, rgba(0,0,0,0.06), rgba(0,0,0,0.02), rgba(0,0,0,0.06));
+}
+/* Botão remover do carrinho - padronizado */
+.cart-remove-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px 14px;
+}
+/* Total do item no topo direito */
+.cart-item-total {
+    color: #2e8291; /* brand azul esverdeado */
+    font-weight: 700;
+    background: rgba(46,130,145,0.12);
+    padding: 6px 10px;
+    border-radius: 999px;
+}
+/* Mobile - Ajustes específicos do carrinho */
+@media (max-width: 768px) {
+    .cart-item {
+        margin-bottom: 1rem !important;
+        padding: 12px !important;
+        gap: 12px;
+    }
+}
+/* Estilos para produtos customizados do dashboard */
+.custom-product-card {
+    animation: fadeInUp 0.5s ease-out;
+}
+
+/* Responsividade para produtos customizados */
+@media (max-width: 768px) {
+    .custom-product-card .product-image {
+        width: 50px;
+        height: 50px;
+        margin-right: 10px;
+    }
 }
 
 .btn-primary {

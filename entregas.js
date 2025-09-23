@@ -1,19 +1,29 @@
-// entregas.js - Taxa de entrega fixa para Jaú/SP
+/*
+===============================
+SCRIPT DE TAXA DE ENTREGA LR Gourmet
+===============================
+Este arquivo controla o cálculo da taxa de entrega com base no CEP informado pelo cliente.
+Comentários úteis foram adicionados para facilitar manutenção por iniciantes.
+Cada função tem um comentário explicando seu propósito.
+Se você for iniciante, procure os comentários para entender cada parte!
+*/
+
+// Valor fixo da taxa de entrega para Jaú/SP
 const TAXA_ENTREGA_JAU = 10.00;
 
-// Função para converter CEP para número
+// Converte CEP para número inteiro
 function cepParaNumero(cep) {
     return parseInt(cep.replace(/\D/g, ''), 10);
 }
 
-// Função para validar se o CEP é de Jaú
+// Verifica se o CEP pertence à cidade de Jaú/SP
 function validarCEPJau(cep) {
     const cepNumero = cepParaNumero(cep);
     // Faixa de CEPs de Jaú: 17200-001 a 17229-999
     return cepNumero >= 17200001 && cepNumero <= 17229999;
 }
 
-// Função para calcular a taxa de entrega
+// Calcula a taxa de entrega com base no CEP informado
 function calcularTaxaEntrega(cep) {
     // Valida se o CEP é válido (apenas números)
     const cepNumero = cepParaNumero(cep);

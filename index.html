@@ -4,25 +4,27 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LR Gourmet</title>
+    <!-- Bootstrap, FontAwesome e fontes para layout e ícones -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Eczar:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- CSS principal do site -->
     <link rel="stylesheet" href="style.css">
 
-    <link rel="icon" type="image/png" href="muffin.png" sizes= "192x192"/>
+    <!-- Ícone do site -->
+    <link rel="icon" type="image/png" href="icon.png" sizes= "192x192"/>
 
+    <!-- Metadados para compartilhamento -->
     <meta property="og:type" content="website"/>
     <meta property="og:title" content="LR Gourmet"/>
-    <meta property="og:image" content="https://lrgourmet.com.br/PISTACHE.svg"/>
+    <meta property="og:image" content="https://lrgourmet.com.br/logo.html"/>
     <meta property="og:description" content="Delícias que encantam o paladar!"/>
     <meta property="og:site_name" content="LRgourmet"/>    
-    
-
 </head>
 <body class="home">
     
 
-    <!-- Navbar -->
+    <!-- Navbar principal do site -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
         <div class="container">
             <a class="navbar-brand" href="index.html">
@@ -46,18 +48,13 @@
                     <li class="nav-item">
                         <a class="nav-link" href="horarios.html">Horários</a>
                     </li>
-                      <!--<li class="nav-item">
-                        <a class="nav-link" href="contato.html">Contato</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="sugestoes.html">Sugestões</a>
-                    </li>  -->
+
                 </ul>
             </div>
         </div>
     </nav>
 
-    <!-- Carrossel Hero -->
+    <!-- Carrossel principal (banners) -->
     <div id="mainCarousel" class="carousel slide hero-carousel" data-ride="carousel" data-interval="4000" data-pause="hover">
         <ol class="carousel-indicators">
             <li data-target="#mainCarousel" data-slide-to="0" class="active"></li>
@@ -68,16 +65,16 @@
             <div class="carousel-item active">
                 <a href="pistache.html" class="d-block">
                     <picture>
-                        <source media="(max-width: 767.98px)" srcset="PISTACHE.svg">
-                        <img src="pistache pc .svg" class="d-block w-100" alt="Pistache Desktop">
+                        <source media="(max-width: 767.98px)" srcset="Banner_pistache_MB.svg">
+                        <img src="Banner_pistache_pc.svg" class="d-block w-100" alt="Pistache Desktop">
                     </picture>
                 </a>
             </div>
             <!-- Slide 2 -->
             <div class="carousel-item">
                 <picture>
-                    <source media="(max-width: 767.98px)" srcset="FRETE.svg">
-                    <img src="frete pc.svg" class="d-block w-100" alt="Frete Desktop">
+                    <source media="(max-width: 767.98px)" srcset="Banner_pistache_MB.svg">
+                    <img src="Banner_frete_pc.svg" class="d-block w-100" alt="Frete Desktop">
                 </picture>
             </div>
         </div>
@@ -91,20 +88,12 @@
         </a>
     </div>
 
-    <!-- Status de Abertura (entre banner e conteúdo) -->
+    <!-- Barra de status de abertura (aparece se estiver aberto/fechado) -->
     <div id="statusBar" class="status-bar d-none text-center">
         <span id="statusText"></span>
     </div>
 
-    <!-- Conteúdo Principal -->
-    <!--<div class="container mt-5 pt-4">
-         Botão para Cardápio Completo 
-        <div class="d-flex justify-content-end pr-4">
-    <a href="cardapio.html" class="btn btn-cardapio-completo">
-        </i> Ver Cardápio Completo</a>
-</div>-->
-
-    <!-- Mais Vendidos -->
+    <!-- Seção de produtos mais vendidos -->
     <section class="container my-1">
         <h2 class="text-center mb-5">Mais Vendidos</h2>
         <div class="row">
@@ -115,79 +104,7 @@
                     </div>
                     <div class="card-body">
                         <ul class="list-group list-group-flush">
-
-                            <!-- <li class="list-group-item d-flex justify-content-between align-items-center">
-                                <div class="product-with-image">
-                                    <img src="bom bom de morango.svg" class="product-image" alt="Bom Bom de Morango">
-                                    <div class="product-info">
-                                        <h5>Bom Bom de Morango</h5>
-                                        <p class="mb-1">Brigadeiro tradicional, Brigadeiro de Ninho, e Morangos frescos.</p>
-                                        <strong>R$ 12,00</strong>
-                                    </div>
-                                </div>
-                                <button class="btn btn-sm btn-primary add-to-cart" 
-                                        data-name="Bom Bom de Morango" 
-                                        data-price="12.00">
-                                    </i> Adicionar</button>
-                            </li>
-                            <li class="list-group-item d-flex justify-content-between align-items-center">
-                                <div class="product-with-image">
-                                    <img src="bom bom de uva.svg" class="product-image" alt="Bom Bom de Uva">
-                                    <div class="product-info">
-                                        <h5>Bom Bom de Uva</h5>
-                                        <p class="mb-1">Brigadeiro tradicional, Brigadeiro de Ninho, e Uvas frescas.</p>
-                                        <strong>R$ 12,00</strong>
-                                    </div>
-                                </div>
-                                <button class="btn btn-sm btn-primary add-to-cart" 
-                                        data-name="Bom Bom de Uva" 
-                                        data-price="12.00">
-                                    </i> Adicionar</button>
-                            </li>
-                            <li class="list-group-item d-flex justify-content-between align-items-center">
-                                <div class="product-with-image">
-                                    <img src="tortinha de limão.svg" class="product-image" alt="Tortinha de Limão">
-                                    <div class="product-info">
-                                        <h5>Tortinha de Limão</h5>
-                                        <p class="mb-1">Bolacha amanteigada com recheio de limão.</p>
-                                        <strong>R$ 12,00</strong>
-                                    </div>
-                                </div>
-                                <button class="btn btn-sm btn-primary add-to-cart" 
-                                        data-name="Tortinha de Limão" 
-                                        data-price="12.00">
-                                    </i> Adicionar</button>
-                            </li>
-
-                            <li class="list-group-item d-flex justify-content-between align-items-center">
-                                <div class="product-with-image">
-                                    <img src="brigadeiro.png" class="product-image" alt="Pavê de Prestigio">
-                                    <div class="product-info">
-                                        <h5>Pavê de Prestigio</h5>
-                                        <p class="mb-1">Brigadeiro de coco, bolachas maizena, e brigadeiro tradicional.</p>
-                                        <strong>R$ 12,50</strong>
-                                    </div>
-                                </div>
-                                <button class="btn btn-sm btn-primary add-to-cart" 
-                                        data-name="Pavê de Prestigio" 
-                                        data-price="12.50">
-                                    </i> Adicionar</button>
-                            </li>
-
-                            <li class="list-group-item d-flex justify-content-between align-items-center">
-                                <div class="product-with-image">
-                                    <img src="trufa.svg" class="product-image" alt="Trufa de Nutella">
-                                    <div class="product-info">
-                                        <h5>Trufa de Nutella</h5>   
-                                        <p class="mb-1">Trufa de Nutella.</p>
-                                        <strong>R$ 6,50</strong>
-                                    </div>
-                                </div>
-                                <button class="btn btn-sm btn-primary add-to-cart" 
-                                        data-name="Trufa de Nutella" 
-                                        data-price="6.50">
-                                    </i> Adicionar</button>
-                            </li> -->
+                                                       
 
                         </ul>
                     </div>
@@ -200,68 +117,8 @@
                         <h4>Bebidas</h4>
                     </div>
                     <div class="card-body">
-                        <ul class="list-group list-group-flush">
-                            
-                            <!-- <li class="list-group-item d-flex justify-content-between align-items-center">
-                                <div class="product-with-image">
-                                    <img src="COCA-LATA.png" class="product-image" alt="Refrigerante cola 350ml">
-                                    <div class="product-info">
-                                        <h5>Refrigerante Coca-Lata 350ml</h5>
-                                        <p class="mb-1">Refrigerante Coca-Cola.</p>
-                                        <strong>R$ 6,00</strong>
-                                    </div>
-                                </div>
-                                <button class="btn btn-sm btn-primary add-to-cart" 
-                                        data-name="Refrigerante cola 350ml" 
-                                        data-price="6.00">
-                                    </i> Adicionar</button>
-                            </li>
-                            
-                             <li class="list-group-item d-flex justify-content-between align-items-center">
-                                <div class="product-with-image">
-                                    <img src="REFRIGERANTE-COCA-COLA-LATA-350ML-ZERO.png" class="product-image" alt="Refrigerante cola zero 350ml">
-                                    <div class="product-info">
-                                        <h5>Refrigerante Coca-Lata Zero 350ml</h5>
-                                        <p class="mb-1">Refrigerante Coca-Cola Zero.</p>
-                                        <strong>R$ 6,00</strong>
-                                    </div>
-                                </div>
-                                <button class="btn btn-sm btn-primary add-to-cart" 
-                                        data-name="Refrigerante cola zero 350ml" 
-                                        data-price="6.00">
-                                    </i> Adicionar</button>
-                            </li>
-                            
-                            <li class="list-group-item d-flex justify-content-between align-items-center">
-                                <div class="product-with-image">
-                                    <img src="GARRAFA-D´AGUA.webp" class="product-image" alt="Água Mineral">
-                                    <div class="product-info">
-                                        <h5>Água Mineral 500ml</h5>
-                                        <p class="mb-1">Água mineral sem gás.</p>
-                                        <strong>R$ 4,00</strong>
-                                    </div>
-                                </div>
-                                <button class="btn btn-sm btn-primary add-to-cart" 
-                                        data-name="Água Mineral 500ml" 
-                                        data-price="4.00">
-                                    </i> Adicionar</button>
-                            </li>         
-                            
-                            <li class="list-group-item d-flex justify-content-between align-items-center">
-                                <div class="product-with-image">
-                                    <img src="garrafa dagua com gas.webp" class="product-image" alt="Água mineral com gás.">
-                                    <div class="product-info">
-                                        <h5>Água Mineral 500ml</h5>
-                                        <p class="mb-1">Água mineral com gás.</p>
-                                        <strong>R$ 4,00</strong>
-                                    </div>
-                                </div>
-                                <button class="btn btn-sm btn-primary add-to-cart" 
-                                        data-name="Água mineral com gás." 
-                                        data-price="4.00">
-                                    </i> Adicionar</button>
-                            </li> -->
-
+                        <ul class="list-group list-group-flush">                      
+                           
                         </ul>
                     </div>
                 </div>
@@ -270,11 +127,11 @@
         
         <!-- Container para produtos customizados do dashboard -->
         <div id="customProductsContainer" class="row">
-            <!-- Produtos customizados serão inseridos aqui dinamicamente -->
+            <!-- Produtos customizados serão inseridos aqui dinamicamente via JS -->
         </div>
     </section>
 
-   <!-- Modal do Carrinho -->
+    <!-- Modal do Carrinho -->
 <div class="modal fade" id="cartModal" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
@@ -342,7 +199,7 @@
     </div>
 </div>
 
-<!-- Modal de Confirmação de Dados -->
+    <!-- Modal de Confirmação de Dados -->
 <div class="modal fade" id="confirmationModal" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
@@ -425,7 +282,7 @@
         <span class="cart-count" id="cartCount">0</span>
     </div>
 
-    <!-- Rodapé -->
+    <!-- Rodapé do site -->
     <footer >
         <div class="container text-center">
             <h4>Siga-nos!</h4>
@@ -437,6 +294,7 @@
         </div>
     </footer>
 
+    <!-- Scripts principais do site -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
